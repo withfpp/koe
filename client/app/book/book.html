@@ -1,0 +1,17 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="col-md-12">
+  <div ng-repeat="book in books">
+    {{book}}
+    <span class="breadcrumb">{{book.genre}}</span>
+    <div class="well">
+      <div class="book-body">
+        {{book.body}}
+      </div>
+      <div class="book-choice-{{book.id}}" ng-repeat="c in book.choice | filter:converter(c)">
+        <span>{{$index | numToAlpha}}</span><span>{{c}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>
