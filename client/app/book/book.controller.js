@@ -2,7 +2,13 @@
 
 angular.module('koeApp')
   .controller('BookListCtrl', function($scope, $state, $window, Book){
-    $scope.books = Book.query();  
+    Book.query(function(data){
+      init(data);
+    });  
+
+    function init(data){
+      $scope.books = data;
+    }
     //fetch all books. Issues a GET to /api/books
   })
 

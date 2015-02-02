@@ -17,6 +17,7 @@ var BookSchema = new Schema({
     point: Number,
     answer: Number,
     choice: {},
+    explanation: String,
     user_id: String,
     id: Number
     }

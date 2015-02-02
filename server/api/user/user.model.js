@@ -20,6 +20,7 @@ var UserSchema = new Schema({
   seen: [],
   made: [],
   bookmark: [],
+  quizBookmark: [],
   wrong: [],
   totalPoint: Number,
   rank: Number
