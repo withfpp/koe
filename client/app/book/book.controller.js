@@ -1,15 +1,25 @@
 'use strict';
 
 angular.module('koeApp')
-  .controller('BookListCtrl', function($scope, $state, $window, Book){
+  .controller('BookListCtrl', function($scope, $state, $window, Book, Auth){
+
+
+    //fetch all books. Issues a GET to /api/books
     Book.query(function(data){
       init(data);
     });  
 
+    Auth.getCurrentUser().$promise.then(function(data){
+      $scope.user = data;
+      console.log($scope.user.seen);
+    });
+
     function init(data){
       $scope.books = data;
     }
-    //fetch all books. Issues a GET to /api/books
+
+    $scope.login = Auth.isLoggedIn($scope.user);
+    
   })
 
 
@@ -81,7 +91,7 @@ angular.module('koeApp')
   })
 
 
-  .controller('BookCreateCtrl', function($scope, $state, $stateParams, Book){
+  .controller('BookCreateCtrl', function ($scope, $state, $stateParams, Book){
     $scope.book = new Book(); 
     // create new book instance.
 
