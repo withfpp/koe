@@ -1,0 +1,37 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+<div class="col-md-12">
+  <div class="info">
+    총 {{book.quiz.length}} 문항
+  </div>
+  <div ng-repeat="quiz in book.quiz"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          {{$index+1}}. <span class="breadcrumb">{{quiz.title}}</span>
+          <span class="label pull-right label-success">{{quiz.point}} P</span>
+          <span class="label pull-right label-warning">{{book.author}}</span>
+        </div>
+        <div class="panel-body">
+          <div class="quiz-body">{{quiz.body}}</div>
+          <div ng-click="" class="quiz-choice-{{quiz.id}}" ng-repeat="c in quiz.choice">
+            <div ng-click="clicked(quiz,c);answer(quiz,$index+1);" ng-class="{selected: quiz.activeValue === c}" name="{{quiz.id}}">
+              <span>{{$index | numToAlpha}}</span><span ng-click="">{{c}}</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="panel-footer clearfix">
+          <div class="pull-right">
+              <a ui-sref="editBook({id:book._id})" class="btn btn-primary">Edit</a>
+              <a href="#" class="btn btn-default">Go Back</a>
+          </div>
+        </div> -->
+      </div>
+  </div>
+
+  <div class="panel-footer clearfix">
+    <div class="pull-right">
+        <a ng-click="submitBook({id:book._id})" class="btn btn-primary">제출</a>
+        <a href="#" class="btn btn-default">Go Back</a>
+    </div>
+  </div>
+
+</div>  

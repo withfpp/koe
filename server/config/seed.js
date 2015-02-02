@@ -9,40 +9,52 @@ var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
 var Book = require('../api/book/book.model');
 
+
 Book.find({}).remove(function(){
   Book.create({
-    genre: 'toeic',
-    title: 'part5',
-    body: 'yes, she ____.',
-    answer: 1,
-    point: 10,
-    choice: {
-      1:"does",
-      2:"do",
-      3:"don\'t",
-      4:"have",
-      5:"are"
-    },
+    author: 'leon',
+    author_id : 1,
     id: 1,
-    user_id:1
+    title: 'leon toeic book',
+    details: '토익 파트 5 12월 대비 문제 선별',
+    quiz: [
+     {
+      genre: 'toeic',
+      title: 'part5',
+      body: 'yes, she ____.',
+      answer: 1,
+      point: 10,
+      choice: {
+        1:"does",
+        2:"do",
+        3:"don\'t",
+        4:"have",
+        5:"are"
+        },
+      id: 1,
+      user_id:1
 
-  },{
-    genre: 'toeic',
-    title: 'part5',
-    body: '______ who want to apply for this position are requested to submit their performance.',
-    answer: 2,
-    point: 10,
-    choice: {
-      1:"You",
-      2:"Those",
-      3:"Another",
-      4:"Some",
-      5:"Other"
-    },
-    id: 2,
-    user_id:2
+      },
+      {
+      genre: 'toeic',
+      title: 'part5',
+      body: '______ who want to apply for this position are requested to submit their performance.',
+      answer: 2,
+      point: 10,
+      choice: {
+        1:"You",
+        2:"Those",
+        3:"Another",
+        4:"Some",
+        5:"Other"
+        },
+      id: 2,
+      user_id:2
+      }
+    ] 
   })
-});
+})
+
 
 Thing.find({}).remove(function() {
   Thing.create({

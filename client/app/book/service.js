@@ -1,24 +1,8 @@
 'use strict';
 
 angular.module('koeApp')
-  .service('bookService', ['$http',function ($http) {
-    var bookService = {};
-    
-    bookService.getBooks = function (){
-      return $http.get('/api/books');
-    }
+  .service('Book', ['$resource',function ($resource) {
+    return $resource('/api/books/:id')
 
-    bookService.createBook = function (book){
-      return $http.post('/api/books', book);
-    }
-
-
-    return bookService; 
   }])
 
-  .filter("numToAlpha", function(){
-    return function(input){
-      var eng ='abcdefghijklmnopqrstuvwxyz'[input];
-      return '(' + eng.toUpperCase() + ') ';
-    }
-  })

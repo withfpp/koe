@@ -7,7 +7,7 @@ angular.module('koeApp')
       'link': '/'
     },{
       'title': 'Book',
-      'link' :'/book'
+      'link' :'/books'
     }];
 
     $scope.isCollapsed = true;

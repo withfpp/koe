@@ -1,17 +1,10 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
+<div class="well">총 {{books.length}} 개의 문제집이 있습니다. </div> 
 <div class="col-md-12">
-  <div ng-repeat="book in books">
-    {{book}}
-    <span class="breadcrumb">{{book.genre}}</span>
-    <div class="well">
-      <div class="book-body">
-        {{book.body}}
-      </div>
-      <div class="book-choice-{{book.id}}" ng-repeat="c in book.choice | filter:converter(c)">
-        <span>{{$index | numToAlpha}}</span><span>{{c}}</span>
-      </div>
-    </div>
-
+  <div class="bs-callout bs-callout-info" id="callout-navbar-breakpoint" ng-repeat="book in books">
+    
+    <span class="book-title">{{book.title}}</span><span class="label label-warning author">출제자 : {{book.author}}</span>
+    <p>{{book.details}} (문항 수 : {{book.quiz.length}})</p> 
+    <a class="btn btn-primary" ui-sref="viewBook({id:book._id})">문제풀기</a>
   </div>
 </div>
