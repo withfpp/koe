@@ -13,7 +13,7 @@
         <div class="panel-body">
           <div class="quiz-body">{{quiz.body}}</div>
           <div ng-click="" class="quiz-choice-{{quiz.id}}" ng-repeat="c in quiz.choice">
-            <div ng-click="clicked(quiz,c);answer(quiz,$index+1);" ng-class="{selected: quiz.activeValue === c}" name="{{quiz.id}}">
+            <div ng-click="clicked(quiz, c, $parent.$index, $index+1);answer(quiz,$index+1);" ng-class="{selected: quiz.activeValue === c}" name="{{quiz.id}}">
               <span>{{$index | numToAlpha}}</span><span ng-click="">{{c}}</span>
             </div>
           </div>

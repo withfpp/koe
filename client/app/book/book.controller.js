@@ -8,9 +8,11 @@ angular.module('koeApp')
 
 
   .controller('BookViewCtrl', function($scope, $stateParams, Book){
-    var rightAnswer = [];
+    var answer = [];
     var wrongAnswer = [];
     var usersAnswer = [];
+    var rightAnswer = [];
+    var hits = 0;
 
     Book.get({id: $stateParams.id }, function(data){
       //$resource method needs callback..
@@ -27,29 +29,47 @@ angular.module('koeApp')
       var len = quizzes.length;
       var i;
       for(var i=0; i < len; i++){
-        rightAnswer.push(quizzes[i]['answer']);
+        answer.push(quizzes[i]['answer']);
       }
     }
-
-
 
     $scope.answer = function(book,num){
       book.choose = num;
     }
 
-    $scope.clicked = function (book,val,index){
+    $scope.clicked = function (book, val, quizIndex, choiceIndex){
+      // push the user answers array. index equals to index of quiz.
       book.activeValue = val;
-      usersAnswer[index] = val;
-      console.log(usersAnswer);
+      usersAnswer[quizIndex] = choiceIndex;
     }
 
-    $scope.submitBook = function (id){
-
-      console.log($scope.book);
+    $scope.submitBook = function (book){
+      assessment(book);
+      // after assess and submit data to DB, reset the hits count.
+      hits = 0;
     }
 
     function assessment(book){
+      var i,
+          len = answer.length;
 
+      //save the quiz index    
+      for(i = 0; i< len; i++){
+        if(usersAnswer[i] === answer[i]){
+          rightAnswer.push(i)
+          hits++;
+        }else{
+          wrongAnswer.push(i)
+        }
+      }
+
+      saveResultToUser(wrongAnswer);
+    }
+
+    
+    function saveResultToUser(wrongAnswer){
+      console.log("맞은 개수 " +hits);
+      //save wrong answer book data.
     }
 
   })
